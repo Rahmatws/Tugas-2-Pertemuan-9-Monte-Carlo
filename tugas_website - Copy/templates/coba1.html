@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Prediksi Lulusan S1</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='coba1.css') }}">
+    <style>
+        .section {
+            display: none; /* Default semua section disembunyikan */
+        }
+        .section.active {
+            display: block; /* Section yang aktif ditampilkan */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home" onclick="showSection('home', event)">Beranda</a></li>
+            <li><a href="#about" onclick="showSection('about', event)">Tentang Sarjana</a></li>
+            <li><a href="#graduates" onclick="showSection('graduates', event)">Total Mahasiswa</a></li>
+            <li><a href="#rng" onclick="showSection('rng', event)">RNG</a></li>
+            
+        </ul>
+    </nav>
+
+    <div id="content">
+        <section id="home" class="section active">
+            <h1>Selamat Datang di Website Prediksi Jumlah Calon Mahasiswa Universitas Bale Bandung</h1>
+            <p>Aplikasi ini memprediksi jumlah Calon Mahasiswa S1 berdasarkan data tahun 2022-2024. 
+            Dengan menggunakan metode statistik modern seperti Random Number Generation (RNG) dan Monte Carlo Simulation, 
+            aplikasi ini memberikan prediksi yang lebih akurat dan berbasis data untuk membantu memahami tren pendidikan di Universitas Bale Bandung.</p>
+
+            <p>Website ini dirancang sebagai alat bantu untuk memvisualisasikan data jumlah lulusan di berbagai jurusan. 
+            Dengan fitur-fitur seperti prediksi lulusan tahun 2025, pengguna dapat memperoleh wawasan yang mendalam tentang jumlah lulusan 
+            di masa mendatang. Selain itu, aplikasi ini memberikan informasi mendetail tentang metode yang digunakan, termasuk cara kerja RNG 
+            dan Monte Carlo dalam memodelkan skenario yang mungkin terjadi.</p>
+
+            <p>Melalui teknologi berbasis Python dan Flask, aplikasi ini menawarkan antarmuka yang mudah digunakan, data yang transparan, 
+            dan hasil yang dapat diandalkan. Dengan alat ini, Universitas Bale Bandung dan pihak terkait dapat membuat keputusan berbasis data 
+            untuk perencanaan sumber daya dan pengembangan pendidikan di masa depan.</p>
+
+            <div>
+               
+                <img src="{{ url_for('static', filename='pkkmb.jpg') }}" alt="Kegiatan PKKMB Tahun 2024">
+            </div>
+            <h4>Kegiatan PKKMB Universitas Bale Bandung Tahun 2024</h4>
+        </section>
+
+        <section id="about" class="section">
+            <h2>Tentang Sarjana</h2>
+            <p>Sarjana adalah gelar akademik yang diberikan kepada seseorang yang telah menyelesaikan program studi di perguruan tinggi atau universitas, umumnya setelah menyelesaikan pendidikan selama tiga hingga empat tahun (untuk program S1 atau Sarjana). Di Indonesia, gelar sarjana dapat merujuk pada berbagai bidang studi, seperti ilmu sosial, ilmu alam, teknik, kesehatan, seni, dan lain-lain.Berikut adalah beberapa poin penting mengenai sarjana:
+            Tipe Gelar: Di Indonesia, gelar sarjana biasanya diakhiri dengan "S" (Sarjana) diikuti dengan bidang studi. Misalnya, S.E. untuk Sarjana Ekonomi, S.T. untuk Sarjana Teknik, S.H. untuk Sarjana Hukum, dan S.Ked. untuk Sarjana Kedokteran.
+            Tujuan Pendidikan: Pendidikan sarjana bertujuan untuk memberikan pengetahuan dan keterampilan dasar dalam bidang studi tertentu, serta membekali mahasiswa dengan kemampuan berpikir kritis dan analitis.Kurikulum: Kurikulum program sarjana umumnya mencakup mata kuliah wajib dan pilihan, yang dirancang untuk memberikan pemahaman mendalam tentang disiplin ilmu yang dipilih.Syarat Kelulusan: Untuk mendapatkan gelar sarjana, mahasiswa biasanya harus menyelesaikan sejumlah sks (satuan kredit semester), menyelesaikan tugas akhir atau skripsi, dan lulus ujian.Karir: Lulusan sarjana memiliki kesempatan kerja yang lebih baik dibandingkan dengan mereka yang hanya memiliki pendidikan menengah. Gelar sarjana sering kali menjadi syarat minimum untuk posisi pekerjaan di banyak sektor.Pendidikan Lanjutan: Lulusan sarjana dapat melanjutkan pendidikan ke jenjang yang lebih tinggi, seperti program magister (S2) atau doktor (S3), untuk mengembangkan pengetahuan dan keterampilan mereka lebih lanjut.Dengan gelar sarjana, individu diharapkan dapat berkontribusi lebih efektif dalam masyarakat, baik melalui pekerjaan di bidang yang sesuai dengan studi mereka maupun dalam peran sosial lainnya.</p>
+            <div>
+               <img src="{{ url_for('static', filename='wisuda.jpg') }}" alt="Kegiatan Wisuda Tahun Ajaran 2022/2023">
+            </div>
+            <h4>Kegiatan Wisuda Universitas Bale Bandung Tahun Akademik 2022/2023</h4>
+        </section>
+	
+        <section id="graduates" class="section">
+    <h2>Total Mahasiswa Per Jurusan Tahun 2022-2024</h2>
+
+    <!-- Tabel 2022 -->
+    <h3>Tahun 2022</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Jurusan</th>
+                <th>Total Mahasiswa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in mahasiswa_data %}
+                {% if row.tahun == 2022 %}
+                    <tr>
+                        <td>{{ row.jurusan }}</td>
+                        <td>{{ row.total }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Tabel 2023 -->
+    <h3>Tahun 2023</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Jurusan</th>
+                <th>Total Mahasiswa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in mahasiswa_data %}
+                {% if row.tahun == 2023 %}
+                    <tr>
+                        <td>{{ row.jurusan }}</td>
+                        <td>{{ row.total }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Tabel 2024 -->
+    <h3>Tahun 2024</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Jurusan</th>
+                <th>Total Mahasiswa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in mahasiswa_data %}
+                {% if row.tahun == 2024 %}
+                    <tr>
+                        <td>{{ row.jurusan }}</td>
+                        <td>{{ row.total }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+
+        <section id="rng" class="section">
+<!-- Tambahkan Dropdown Pilihan Jurusan -->
+    <p>Pilih jurusan untuk melihat prediksi:</p>
+    <label for="jurusan-select">Pilih Jurusan:</label>
+    <select id="jurusan-select">
+        <option value="">-- Pilih Jurusan --</option>
+        <option value="Agrobisnis">Agrobisnis</option>
+        <option value="Agroteknologi">Agroteknologi</option>
+        <option value="Akuntansi">Akuntansi</option>
+        <option value="Ilmu Keperawatan">Ilmu Keperawatan</option>
+        <option value="Ilmu Pemerintahan">Ilmu Pemerintahan</option>
+        <option value="Matematika">Matematika</option>
+        <option value="Pendidikan Bahasa dan sastra indonesia">Pendidikan Bahasa dan Sastra Indonesia</option>
+        <option value="Pendidikan Bahasa Inggris">Pendidikan Bahasa Inggris</option>
+        <option value="Pendidikan Geografi">Pendidikan Geografi</option>
+        <option value="Pendidikan IPS">Pendidikan IPS</option>
+        <option value="Sistem Informasi">Sistem Informasi</option>
+        <option value="Teknik Informatika">Teknik Informatika</option>
+        <option value="Teknologi Pangan">Teknologi Pangan</option>
+    </select>
+    <h2>Hitung Interval</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Tahun</th>
+                <th>Jumlah Lulusan</th>
+                <th>Probabilitas</th>
+                <th>Kumulatif</th>
+                <th>Interval</th>
+            </tr>
+        </thead>
+        <tbody id="interval-table">
+            <!-- Isi tabel ini akan di-generate dari JavaScript -->
+        </tbody>
+    </table>
+
+    <h2>Generate Bilangan Acak</h2>
+
+    
+
+    <!-- Area untuk menampilkan hasil -->
+    <div id="rng-result"></div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Zi</th>
+                <th>(a*Zi) + C</th>
+                <th>((a*Zi) + C) mod m</th>
+                <th>Angka Tiga Digit</th>
+            </tr>
+        </thead>
+        <tbody id="rng-table">
+            <!-- Isi tabel ini akan di-generate dari JavaScript -->
+        </tbody>
+    </table>
+ </table>
+<h2>Prediksi Calon Mahasiswa Tahun Berikutnya</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jurusan</th>
+                        <th>Tahun</th>
+                        <th>Total Mahasiswa</th>
+                    </tr>
+                </thead>
+                <tbody id="prediksi-table">
+                    <!-- Data prediksi yang diambil dari RNG -->
+                </tbody>    
+            </table>
+
+</section>
+    </div>
+
+    <script src="{{url_for('static', filename='coba1.js') }}"></script>
+</body>
+</html>
